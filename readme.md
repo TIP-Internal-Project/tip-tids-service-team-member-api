@@ -19,7 +19,7 @@ DEBUG=team-member:* npm start
 ```
 
 ## Dev
-  1. Initialize database. Go to service-api-database repository.
+  1. Initialize database. Refer to service-api-database repository.
   2. Initialize application
   ```
   npm install
