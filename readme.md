@@ -18,12 +18,14 @@ npm install
 DEBUG=team-member:* npm start
 ```
 
-## Build & Deploy
-- Startup
-```
-docker-compose up -d --build
-```
-- Shutdown
-```
-docker-compose down -v --rmi all
-```
+## Dev
+  1. Initialize database. Go to service-api-database repository.
+  2. Initialize application
+  ```
+  npm install
+  npm run dev
+  ```
+
+## TODO
+- create models
+- populate collection
