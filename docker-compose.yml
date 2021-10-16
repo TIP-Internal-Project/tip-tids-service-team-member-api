@@ -1,9 +1,0 @@
-version: '2.0'
-
-services: 
-    web:
-        image: team-member
-        init: true
-        build: .
-        ports:
-          - "3001:3001"
