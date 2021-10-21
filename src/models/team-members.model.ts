@@ -10,9 +10,10 @@ export class TeamMembers extends Entity {
   id?: string;
 
   @property({
-    type: 'string',
+    type: 'number',
+    required: true,
   })
-  workdayId?: string;
+  workdayId: number;
 
   @property({
     type: 'string',

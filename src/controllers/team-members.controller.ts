@@ -4,18 +4,12 @@ import {
   Filter,
   FilterExcludingWhere,
   repository,
-  Where,
+  Where
 } from '@loopback/repository';
 import {
-  post,
-  param,
-  get,
-  getModelSchemaRef,
-  patch,
-  put,
-  del,
-  requestBody,
-  response,
+  del, get,
+  getModelSchemaRef, param, patch, post, put, requestBody,
+  response
 } from '@loopback/rest';
 import {TeamMembers} from '../models';
 import {TeamMembersRepository} from '../repositories';
@@ -37,12 +31,12 @@ export class TeamMembersController {
         'application/json': {
           schema: getModelSchemaRef(TeamMembers, {
             title: 'NewTeamMembers',
-            exclude: ['id'],
+
           }),
         },
       },
     })
-    teamMembers: Omit<TeamMembers, 'id'>,
+    teamMembers: TeamMembers,
   ): Promise<TeamMembers> {
     return this.teamMembersRepository.create(teamMembers);
   }
@@ -148,3 +142,7 @@ export class TeamMembersController {
     await this.teamMembersRepository.deleteById(id);
   }
 }
+function workdayId(workdayId: any, filter: FilterExcludingWhere<TeamMembers> | undefined): TeamMembers | PromiseLike<TeamMembers> {
+  throw new Error('Function not implemented.');
+}
+
