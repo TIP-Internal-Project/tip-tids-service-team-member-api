@@ -1,0 +1,56 @@
+version: '2.0'
+
+services:
+  mongodb:
+    build:
+      context: .
+      dockerfile: ./dev/Dockerfile-mongodb.dev
+    container_name: mongodb
+    env_file: ./dev/mongodb-config.env
+    networks:
+      - mongodb_network
+    ports:
+      - 27017:27017
+    restart: unless-stopped
+
+  mongosetup:
+    image: mongo:5.0
+    container_name: mongosetup
+    depends_on:
+      - mongodb
+    networks:
+      - mongodb_network
+    restart: 'no'
+    entrypoint:
+      [
+        'bash',
+        '-c',
+        'sleep 10 && mongoimport --host mongodb:27017 -d tip -c TeamMembers --file TeamMembers.csv --headerline --type csv -u api_user -p api1234',
+      ]
+    volumes:
+      - ${PWD}/dev/TeamMembers.csv:/TeamMembers.csv
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    env_file: ./dev/mongo-express-config.env
+    volumes:
+      - mongodb-data:/data/db
+    depends_on:
+      - mongodb
+    networks:
+      - mongodb_network
+    ports:
+      - 8181:8081
+    healthcheck:
+      test: wget --quiet --tries=3 --spider http://admin:admin123@localhost:8181 || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+volumes:
+  mongodb-data:
+    name: mongodb-data
+networks:
+  mongodb_network:
+    name: mongodb_network

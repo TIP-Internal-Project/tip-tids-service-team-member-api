@@ -18,6 +18,18 @@ To only install resolved dependencies in `package-lock.json`:
 npm ci
 ```
 
+## Build and start the dev local environment
+
+```sh
+npm run dev:start
+```
+
+## Shutdown the dev local environment
+
+```sh
+npm run dev:stop
+```
+
 ## Run the application
 
 ```sh
