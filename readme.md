@@ -18,16 +18,16 @@ To only install resolved dependencies in `package-lock.json`:
 npm ci
 ```
 
-## Build and start the dev local environment
+## Build and start the local MongoDB database
 
 ```sh
-npm run dev:start
+npm run mongodb:start
 ```
 
-## Shutdown the dev local environment
+## Shutdown the local MongoDB database
 
 ```sh
-npm run dev:stop
+npm run mongodb:stop
 ```
 
 ## Run the application
