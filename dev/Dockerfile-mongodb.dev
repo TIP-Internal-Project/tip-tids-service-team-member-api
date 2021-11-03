@@ -1,3 +1,0 @@
-FROM mongo:5.0
-
-COPY ../dev/db-init.js /docker-entrypoint-initdb.d/db-init.js

@@ -4,9 +4,9 @@ services:
   mongodb:
     build:
       context: .
-      dockerfile: ./dev/Dockerfile-mongodb.dev
+      dockerfile: ./mongodb/Dockerfile-mongodb.dev
     container_name: mongodb
-    env_file: ./dev/mongodb-config.env
+    env_file: ./mongodb/mongodb-config.env
     networks:
       - mongodb_network
     ports:
@@ -28,12 +28,12 @@ services:
         'sleep 10 && mongoimport --host mongodb:27017 -d tip -c TeamMembers --file TeamMembers.csv --headerline --type csv -u api_user -p api1234',
       ]
     volumes:
-      - ${PWD}/dev/TeamMembers.csv:/TeamMembers.csv
+      - ${PWD}/mongodb/TeamMembers.csv:/TeamMembers.csv
 
   mongo-express:
     image: mongo-express
     container_name: mongo-express
-    env_file: ./dev/mongo-express-config.env
+    env_file: ./mongodb/mongo-express-config.env
     volumes:
       - mongodb-data:/data/db
     depends_on:
