@@ -1,7 +1,13 @@
 import {Entity, model, property} from '@loopback/repository';
 
-@model()
-export class TeamMembers extends Entity {
+@model({
+  settings: {
+    mongodb: {
+      collection: "TeamMembers"
+    }
+  }
+})
+export class TeamMember extends Entity {
   @property({
     type: 'string',
     id: true,
@@ -33,19 +39,14 @@ export class TeamMembers extends Entity {
   middleName?: string;
 
   @property({
-    type: 'string',
+    type: 'number',
   })
-  immediateManager?: string;
+  immediateSupervisor?: number;
 
   @property({
-    type: 'string',
+    type: 'number',
   })
-  slt?: string;
-
-  @property({
-    type: 'string',
-  })
-  supervisoryOrganization?: string;
+  slt?: number;
 
   @property({
     type: 'string',
@@ -55,21 +56,16 @@ export class TeamMembers extends Entity {
   @property({
     type: 'string',
   })
-  primaryWorkEmailAddress?: string;
-
-  @property({
-    type: 'string',
-  })
-  secondaryWorkEmailAddress?: string;
+  workEmail?: string;
 
 
-  constructor(data?: Partial<TeamMembers>) {
+  constructor(data?: Partial<TeamMember>) {
     super(data);
   }
 }
 
-export interface TeamMembersRelations {
+export interface TeamMemberRelations {
   // describe navigational properties here
 }
 
-export type TeamMembersWithRelations = TeamMembers & TeamMembersRelations;
+export type TeamMemberWithRelations = TeamMember & TeamMemberRelations;

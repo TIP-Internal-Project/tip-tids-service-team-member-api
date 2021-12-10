@@ -1,2 +1,4 @@
 export * from './ping.controller';
-export * from './team-members.controller';
+export * from './team-member.controller';
+
+export * from './team-member.controller';

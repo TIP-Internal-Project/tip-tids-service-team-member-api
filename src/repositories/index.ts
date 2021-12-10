@@ -1,1 +1,1 @@
-export * from './team-members.repository';
+export * from './team-member.repository';
